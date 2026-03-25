@@ -1,18 +1,16 @@
-# 📖 The Distributed AI Revolution
+# The Distributed AI Revolution
 
-**How Ordinary Computers Will Create Extraordinary AI**
+**How Ordinary Computers Will Create Extraordinary AI — And How You Can Profit From It**
 
-*By strulovitz*
+*By Nir Strulovitz*
 
 ---
 
 ## About This Book
 
-This book documents the creation of the Beehive Of AI project — a distributed AI computing platform that connects home computers into a powerful AI network accessible to everyone.
+This book is for everyone. You do not need to be a programmer, an engineer, or a tech expert. If you can read, you can understand this book — and by the end of it, you will understand how ordinary computers can work together as a powerful AI network, and how you can be a part of it.
 
-It is part technical diary, part manifesto, and part practical guide. Written as the project is built, chapter by chapter, it captures not just the *what* and *how* but the *why* behind every decision.
-
-Whether you are a developer wanting to understand how distributed AI works, an entrepreneur looking for inspiration, or simply someone curious about where AI is headed — this book is written for you.
+Whether you want to earn money from your idle computer, run a business coordinating AI work, get affordable AI processing for your company, or set up a private AI system inside your organization where sensitive data never leaves the building — this book will show you how.
 
 ---
 
@@ -20,24 +18,28 @@ Whether you are a developer wanting to understand how distributed AI works, an e
 
 | # | Chapter | Status |
 |---|---------|--------|
-| 1 | [The Vision — Why We Need Distributed AI](chapter_01.md) | ✅ Published |
-| 2 | The Problem — Cloud AI vs. Local AI | 🔜 Coming soon |
-| 3 | The Invention — Task Parallelism for AI | 🔜 Coming soon |
-| 4 | The Beehive — How It All Works | 🔜 Coming soon |
-| 5 | Building the Hive — A Developer's Journal | 🔜 Coming soon |
-| 6 | The Economics — How Everyone Earns | 🔜 Coming soon |
-| 7 | Privacy and Security | 🔜 Coming soon |
-| 8 | The Future — AI for Everyone | 🔜 Coming soon |
+| | [Prologue — A Dream Worth Coding For](prologue.md) | Published |
+| 1 | [What If Your Computers Could Make Money While Everyone Sleeps?](chapter_01.md) | Published |
+| 2 | [The Beehive: A Simple Idea That Changes Everything](chapter_02.md) | Published |
+| 3 | [The Secret Ingredient: AI That Lives on Your Computer](chapter_03.md) | Published |
+| 4 | [One App, Three Dreams](chapter_04.md) | Published |
+| 5 | [The Marketplace: Where Tasks Meet Computers](chapter_05.md) | Published |
+| 6 | Show Me the Honey: How Everyone Earns | Coming soon |
+| 7 | From Zero to Beehive: Anyone Can Set This Up | Coming soon |
+| 8 | The Proof: We Actually Did It | Coming soon |
+| 9 | Vibe Coding: How One Person Built All of This | Coming soon |
+| 10 | The Future: A World of Beehives | Coming soon |
+| | Epilogue — Tokyo, Paris, and the Open Road | Coming soon |
 
 ---
 
 ## Related Projects
 
-- [BeehiveOfAI](https://github.com/strulovitz/BeehiveOfAI) — The website
-- [HoneycombOfAI](https://github.com/strulovitz/HoneycombOfAI) — The software
+- [BeehiveOfAI](https://github.com/strulovitz/BeehiveOfAI) — The website (marketplace)
+- [HoneycombOfAI](https://github.com/strulovitz/HoneycombOfAI) — The software (desktop client)
 
 ---
 
 ## License
 
-MIT License — © 2025 strulovitz
+MIT License
