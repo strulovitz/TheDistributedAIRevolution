@@ -24,7 +24,7 @@ Whether you want to earn money from your idle computer, run a business coordinat
 | 3 | [The Secret Ingredient: AI That Lives on Your Computer](chapter_03.md) | Published |
 | 4 | [One App, Three Dreams](chapter_04.md) | Published |
 | 5 | [The Marketplace: Where Tasks Meet Computers](chapter_05.md) | Published |
-| 6 | Show Me the Honey: How Everyone Earns | Coming soon |
+| 6 | [Show Me the Honey: How Everyone Earns](chapter_06.md) | Published |
 | 7 | From Zero to Beehive: Anyone Can Set This Up | Coming soon |
 | 8 | The Proof: We Actually Did It | Coming soon |
 | 9 | Vibe Coding: How One Person Built All of This | Coming soon |
