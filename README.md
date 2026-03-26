@@ -25,7 +25,7 @@ Whether you want to earn money from your idle computer, run a business coordinat
 | 4 | [One App, Three Dreams](chapter_04.md) | Published |
 | 5 | [The Marketplace: Where Tasks Meet Computers](chapter_05.md) | Published |
 | 6 | [Show Me the Honey: How Everyone Earns](chapter_06.md) | Published |
-| 7 | From Zero to Beehive: Anyone Can Set This Up | Coming soon |
+| 7 | [From Zero to Beehive: Anyone Can Set This Up](chapter_07.md) | Published |
 | 8 | The Proof: We Actually Did It | Coming soon |
 | 9 | Vibe Coding: How One Person Built All of This | Coming soon |
 | 10 | The Future: A World of Beehives | Coming soon |
