@@ -129,3 +129,4 @@ If you just want to understand what is possible — you already do. You read the
 The code is at github.com/strulovitz/BeehiveOfAI and github.com/strulovitz/HoneycombOfAI. It is free. It is waiting.
 
 The rest is up to you.
+
