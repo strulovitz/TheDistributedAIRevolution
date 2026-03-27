@@ -163,3 +163,4 @@ In the chapters ahead, I am going to walk you through everything. Not as a techn
 No jargon. No assumed knowledge. If I use a technical term, I will explain it in plain words. If a concept feels complex, I will use a comparison that makes it clear. This book is written for everyone — students, retirees, parents, freelancers, executives, IT managers, dreamers, doers. Everyone.
 
 Your computers are already capable of remarkable things. Let me show you what they are.
+
