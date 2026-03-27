@@ -305,6 +305,14 @@ Here is what you do.
 
 **Use an AI assistant.** This might sound circular, but it is actually the most practical advice I can give. Copy the error message you are seeing, paste it into ChatGPT or Claude or any AI assistant, and ask "What does this mean and how do I fix it?" AI assistants are remarkably good at troubleshooting computer problems. After all, that is one of the things AI was made for.
 
+**One thing Windows users must know.** If your BeehiveOfAI website is running on a Windows machine and Worker Bees or Queen Bees on other computers cannot connect — even though the website works fine in your own browser and you can ping the Windows machine — the almost certain culprit is Windows Defender Firewall. It silently blocks incoming connections to Python with no warning, no popup, nothing. The fix is to open PowerShell as Administrator and run:
+
+```
+New-NetFirewallRule -DisplayName "BeehiveOfAI Python" -Direction Inbound -Action Allow -Program "C:\full\path\to\your\python.exe" -Protocol TCP -Profile Any
+```
+
+To find your Python path, run `python -c "import sys; print(sys.executable)"` first. No restart needed — the rule takes effect immediately. Full instructions are in the TROUBLESHOOTING.md file in the BeehiveOfAI repository.
+
 The point is: you are not alone. Even though this is a new project, the technologies it is built on — Python, Ollama, Flask, PyQt6 — are used by millions of people. Help is always available.
 
 ---
