@@ -231,3 +231,4 @@ In the next chapter, we will talk about the thing that makes all of this sustain
 But that is for tomorrow. For now, you know the three roles, you know the technology, and you know the marketplace. You have the complete picture of how the beehive works.
 
 The only question left is: which bee will you be?
+
