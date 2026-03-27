@@ -48,7 +48,7 @@ Tested on Windows and Linux. Proven across the real internet. Deployed via Cloud
 
 ## About the Author
 
-**Nir Strulovitz** is an inventor and author of 17 published books spanning mathematics, physics, AI safety, defense technology, medical research, and more. His books are available on Library Genesis and Archive.org. His inventions and ideas are documented at [weaponsinventor.com](https://www.weaponsinventor.com/).
+**Nir Strulovitz** is an inventor and author of 17 published books spanning mathematics, physics, AI safety, defense technology, medical research, and more. His inventions and ideas are described in his books, all free to download and read on **Library Genesis** and **Archive.org** (search "Nir Strulovitz"). Also on **YouTube**: search "Nir Strulovitz".
 
 **Contact:** nir.strulovitz@gmail.com | +972-54-475-2626 | [github.com/strulovitz](https://github.com/strulovitz)
 
