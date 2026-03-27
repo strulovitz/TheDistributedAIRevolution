@@ -262,3 +262,4 @@ Now you know how the money works. You know the split, you know the flow, you kno
 But you might be wondering: "This all sounds great in theory. But can I actually set this up? Is it really as simple as you keep saying?"
 
 Yes. It is. And in the next chapter, I will prove it to you — step by step, from zero to a working beehive, in plain language that anyone can follow.
+
