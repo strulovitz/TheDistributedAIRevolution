@@ -139,7 +139,7 @@ It is NOT magic. The AI makes mistakes. You still need to understand enough to k
 - 3 repos on GitHub
 - ~97 total commits across all repos in 7 days
 - 5 AI backends supported
-- 3 operating systems tested (Windows, Linux, macOS)
+- 2 operating systems fully tested and proven (Windows, Linux) — macOS setup completed but test not yet passed
 - 2 modes: CLI and native GUI
 - 1 developer
 - 0 team members
