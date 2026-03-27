@@ -420,3 +420,4 @@ Let me summarize what this chapter has shown you:
 The technology works. The setup is simple. The barrier to entry is lower than almost any other way to earn money with your computer — because there is almost no barrier at all.
 
 In the next chapter, I will show you something even more convincing than instructions: proof. Real tests, on real computers, over the real internet, with real results. Not hypothetical. Not simulated. Actually done, by me, and documented so you can see it with your own eyes.
+
