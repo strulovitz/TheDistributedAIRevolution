@@ -48,9 +48,14 @@ Chapter title: "Vibe Coding: How One Person Built All of This"
 - Book completely rewritten from scratch (Prologue + Chapters 1-7, new vision)
 
 **Days 6-7 — March 26-27, 2026:**
-- Both macOS VMs set up and configured
-- macOS distributed test attempted (not yet passed)
-- Windows Firewall bug discovered and documented everywhere
+- Both macOS VMs (VMware, Sequoia, CPU-only, no GPU) fully set up: Homebrew, Python, Ollama, all repos cloned, GUI tested, CLI tested
+- macOS distributed test attempted multiple times and FAILED — not due to the platform, but due to a series of AI assistant errors:
+  1. Claude Code ran the Worker Bee as a background process — it died silently with no one watching
+  2. The subtask timeout was left at 300 seconds (the default) instead of 900 — CPU-only Ollama needs ~60-120s per subtask, 300s was not enough
+  3. The server URL was beehiveofai.com (Cloudflare) instead of the direct LAN IP — caused SSL errors on old macOS Python
+  4. By the time all mistakes were found and fixes committed, the Claude API itself started returning 529 "overloaded" errors — making it impossible to continue the session
+- The macOS test was abandoned. The platform is not proven on macOS. This is an honest limitation.
+- Windows Firewall bug discovered and documented across all repos
 - Chapter 8 written
 
 **Total: 7 days from first commit to this chapter being written.**
@@ -139,7 +144,8 @@ It is NOT magic. The AI makes mistakes. You still need to understand enough to k
 - 3 repos on GitHub
 - ~97 total commits across all repos in 7 days
 - 5 AI backends supported
-- 2 operating systems fully tested and proven (Windows, Linux) — macOS setup completed but test not yet passed
+- 2 operating systems fully tested and proven (Windows, Linux)
+- macOS: both VMs were fully set up and configured, the test was attempted multiple times but failed — not because the platform does not work on macOS, but because of a cascade of AI assistant mistakes: Claude Code ran the Worker process in the background (it died silently), the subtask timeout was left at 300 seconds instead of the required 900 for CPU-only machines, and the server URL was pointing to Cloudflare instead of the direct LAN IP causing SSL errors. By the time all mistakes were identified and fixed, the Claude API itself started throwing 529 "overloaded" errors, making it impossible to continue. The macOS test was abandoned.
 - 2 modes: CLI and native GUI
 - 1 developer
 - 0 team members
