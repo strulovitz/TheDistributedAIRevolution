@@ -4,7 +4,7 @@
 
 I want to tell you where I am right now, as I write these last words.
 
-I am sitting at my desk in Haifa. It is late. The screen is bright and the apartment is quiet. My girlfriend is asleep in Eastern Europe — a different time zone, a different country, the same dream.
+I am sitting at my desk in Haifa. It is late. The screen is bright and the apartment is quiet. My girlfriend is asleep in Eastern Europe — a different country, the same time zone, the same dream.
 
 Seven days ago, none of this existed. There was no BeehiveOfAI. There was no HoneycombOfAI. There was no book. There was a person with an idea, a keyboard, and a feeling that would not go away — the feeling that ordinary computers, the ones gathering dust under desks and humming in empty offices, could do something extraordinary if someone just figured out how to connect them.
 
