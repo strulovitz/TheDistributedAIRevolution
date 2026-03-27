@@ -159,3 +159,4 @@ When you hear "worker bee" later in this book, you will immediately know: that i
 The language of the hive will guide you through everything that follows. And just like in a real beehive, you do not need to understand every detail of how each bee does its job. You just need to understand your role in the hive.
 
 So — which bee are you? That is what we will explore in the next chapters. But first, let me introduce you to the secret ingredient that makes all of this possible: the AI that lives on your computer.
+
