@@ -257,3 +257,4 @@ If you have an idea — not someday, not after you learn to code, not when you h
 BeehiveOfAI is not the ceiling of what one person can build with these tools. It is an early example. A proof of concept for a new way of working. The projects that come next, built by people who read this book and take the idea seriously, will be larger and more ambitious.
 
 I cannot wait to see what you build.
+
