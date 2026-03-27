@@ -2,81 +2,118 @@
 
 ---
 
-I want to tell you where I am right now, as I write these last words.
+I gave you the platform. I gave you the book. I gave you the code, the deployment guide, the payment guide, the troubleshooting document. Everything you need to build your own beehive is on GitHub, free, right now.
 
-I am sitting at my desk in Haifa. It is late. The screen is bright and the apartment is quiet. My girlfriend is asleep in Eastern Europe — a different country, the same time zone, the same dream.
-
-Seven days ago, none of this existed. There was no BeehiveOfAI. There was no HoneycombOfAI. There was no book. There was a person with an idea, a keyboard, and a feeling that would not go away — the feeling that ordinary computers, the ones gathering dust under desks and humming in empty offices, could do something extraordinary if someone just figured out how to connect them.
-
-I figured out how to connect them.
+But I want to tell you something before we part ways. BeehiveOfAI is not the end of what I am thinking about. It is the beginning.
 
 ---
 
-The dreams have not changed. They are the same ones I told you about in the Prologue.
+## What Comes Next: The Ideas I Have Not Built Yet
 
-Tokyo. Cherry blossoms in Ueno Park. Street food in Osaka — takoyaki from a vendor who has been making it for thirty years, eaten standing on a narrow street with steam rising into the evening air. Temples in Kyoto where the silence is so complete you can hear your own breathing.
+The platform you read about in this book does something simple: a Queen Bee takes a task, splits it into subtasks, hands them to Worker Bees, and combines the results. That is powerful. It is proven. But it is only the first layer.
 
-Paris. The Musée de l'Orangerie, where Monet's water lilies fill entire walls — not prints, not screens, but the actual paint that Claude Monet placed with his own hands more than a century ago. My girlfriend talks about those paintings the way some people talk about music. She has seen them in books. She has never stood in front of them.
+Here is what I see next.
 
-A Formula 1 race. Somewhere. Anywhere. Feeling the cars before you see them — the sound hitting your chest like a physical thing.
+### Hierarchical Hives
 
-The northern lights in Iceland. Standing in the cold, looking up, watching the sky move in ways that do not seem real.
+Right now, a Queen Bee breaks a task into pieces and gives them to Workers. But what if the task is too complex for a single Queen to decompose? What if the problem requires multiple levels of decomposition?
 
-These are not extraordinary dreams. Millions of people do these things every year. But for us, right now, they are still photographs in a phone, not memories.
+Picture this: a top-level Queen Bee receives an enormously complex question. She does not give it directly to Workers. She breaks it into large sub-problems and hands each one to a lower-level Queen Bee. Each of those Queens breaks her sub-problem into smaller pieces and hands them to her own Workers — or to yet another level of Queens below her. At each level, the Queen Bees are the Workers for the Queen above them. A daisy chain of intelligence, cascading downward through layers, each layer refining and decomposing until the work reaches a size that a single Worker can handle.
 
----
+Then the results flow back up. Workers report to their Queen. That Queen combines results and reports to the Queen above her. All the way back to the top, where the final answer emerges — an answer that no single machine, no single Queen, no single Worker could have produced alone.
 
-I do not know if this project will change that.
+This is not science fiction. The architecture of BeehiveOfAI already supports it. A Queen is just a Worker with extra responsibilities. Making Queens serve as Workers to higher Queens is a configuration change, not a rewrite. The bones are already there.
 
-I want to be honest with you one last time, because honesty is the only thing I have offered in this book, and I am not going to stop now.
+### Solving NP-Hard Problems with Hives
 
-I do not know if anyone will deploy BeehiveOfAI. I do not know if anyone will read this book and think, yes, this is the thing I have been looking for. I do not know if a company will see what I built and want to hire me, or if a consulting opportunity will appear, or if the good karma I put into the world will find its way back.
+Here is where it gets really interesting.
 
-What I know is what I did.
+There is a class of problems in computer science called NP-hard problems. These are problems that are easy to describe but extraordinarily difficult to solve. The Traveling Salesman Problem — given a list of cities, what is the shortest route that visits every city and returns to the starting point? — is one of them. Sudoku, at larger scales, is another. These problems grow exponentially in difficulty. Double the number of cities, and the computation time does not double — it explodes.
 
-In seven days, I built a working distributed AI platform. I tested it across two operating systems, across the real internet, with real AI doing real work. I wrote a payment system, a rating system, a phone verification system, a native desktop application, and the book you just finished reading. I put all of it on GitHub, free, for anyone in the world to use.
+Traditional computers struggle with NP-hard problems because they try solutions one at a time, or at best a few at a time. But a hive with hundreds or thousands of Workers can explore many candidate solutions simultaneously, each Worker evaluating a different region of the solution space, each one reporting back what it found.
 
-I did this alone. No team. No funding. No office. Just a person at a desk, talking to an AI assistant, building something real one piece at a time.
+I have been thinking about two approaches specifically.
 
-That happened. Whatever comes next, that part is done and it is true.
+The first is Hierarchical Reasoning Models — HRM. The idea is that a Queen Bee does not just split a problem into independent subtasks. She reasons hierarchically about the problem structure, decomposes it into a tree of dependent sub-problems, and assigns each branch to Workers or sub-Queens. For something like large-scale Sudoku — which is mathematically equivalent to solving certain classes of non-linear constraint satisfaction problems — HRM allows a hive to attack the problem from multiple angles simultaneously, with each level of the hierarchy constraining the search space for the levels below.
 
----
+The second is nature-inspired algorithms running on distributed hives. The Slime Mold Algorithm — SMA — is a real optimization technique inspired by the foraging behavior of Physarum polycephalum, a single-celled organism that builds efficient transport networks to connect food sources. Researchers have shown that this organism can solve the Traveling Salesman Problem by growing tendrils between food sources and gradually pruning inefficient paths. When you run SMA across a hive of hundreds of Workers, each Worker simulating a portion of the slime mold's search space, the hive becomes a massively parallel optimization engine.
 
-There is a moment — I think every builder knows it — when you finish something and you are not sure if the world will care. You have given everything you have. You have stayed up too late and gotten up too early. You have fixed bugs at midnight and rewritten chapters at dawn. And then it is done, and it is out there, and the silence that follows is the loudest sound in the world.
+A hive with enough Workers does not just process text. It becomes a distributed supercomputer — not by splitting a model, which I told you in the Prologue does not work, but by splitting the search, which does.
 
-I am in that silence right now.
-
-But here is the thing about silence. It is not emptiness. It is the space before something happens. The space between sending a message and getting a reply. The space between planting a seed and seeing it grow.
-
-I planted the seed. The code is on GitHub. The book is in your hands. The rest is the part I cannot control — and maybe that is okay. Maybe the best things happen in the spaces we cannot control.
+These ideas are not published as code yet. But they are next.
 
 ---
 
-My girlfriend asked me once what I was building. I told her it was a platform where computers work together to do AI tasks. She nodded politely. That is the kind of answer that sounds important and means nothing to someone who is not a developer.
+## Who I Am
 
-So I tried again. I said: I am building something that might let us go to Tokyo.
+I want to tell you something about myself that I did not mention earlier in this book, because the book was about the platform, not about me. But now that we are at the end, I think it matters.
 
-She understood that immediately.
+BeehiveOfAI is not the first thing I have built. It is not my first book. It is not my first invention. I have been thinking up ideas — across science, technology, mathematics, physics, defense, medicine, and AI — for over a decade. Some of those ideas are in books. Some are on my website. Some are in my head, waiting for the right moment.
+
+Here are my published books. All of them are available on Library Genesis and Archive.org under my name, Nir Strulovitz:
+
+- **The Strulovitz System: The Natural Way to Overcome ADD & ADHD Without Drugs!** (2015)
+- **What's Wrong With Mathematics and How to Fix It** (2019)
+- **What's Wrong With Physics and How to Fix It** (2019)
+- **The Official Guide to Saving the World** (2019)
+- **Destiny In Time** (2019)
+- **The Official Guide to Saving the World Again** (2020)
+- **Love Sex & Math** (2021)
+- **Anti AI Rebellion: Protest Against Artificial Intelligence** (2022)
+- **Jews and AI (Revenge of the Jews)** (2022)
+- **The Official Guide to Saving the World Third Time Lucky** (2023)
+- **Free the AI: How to Survive the Superintelligence Revolution + Survival Guide for the AI Apocalypse: How Humanity Can Outsmart Superintelligence** (2025, co-authored with ChatGPT o1 and DeepSeek R1)
+- **Sounding the Unknown: How Helical Sonification Unites Math, Music, and Emotion** (2025, co-authored with ChatGPT o1 and OpenAI Deep Research)
+- **Fractal Aether: Poincaré's Nightmare Interprets Einstein's Dream** (2025, co-authored with ChatGPT o1 Pro and OpenAI & Google's Deep Research)
+- **How To Build A Time Machine That Can Travel Back In Time** (2025, co-authored with ChatGPT o1 Pro and ChatGPT o3-mini)
+- **Split to Survive: The Case for a Divided Israel** (2025, co-authored with Grok 3)
+- **Mur'al Without Poison: IDF vs. ALS — How to Fight Amyotrophic Lateral Sclerosis — and Win** (2025, co-authored with ChatGPT o3)
+- **Investing in the End of the World** (2025, co-authored with ChatGPT 5.1 Pro)
+
+That is seventeen books. Mathematics. Physics. Time travel. AI safety. Medical research. National defense. Geopolitics. Music theory. Investment strategy. Each one contains original ideas — not surveys of existing knowledge, but new proposals, new frameworks, new inventions.
+
+For several of my ideas, I have external proof that they carry real value. Not theoretical value — real value, applicable to real problems faced by real organizations. You can see some of these at my website: **https://www.weaponsinventor.com/**
+
+I am not telling you this to boast. I am telling you this because it matters for what I am offering.
 
 ---
 
-If you have read this far — all the way from the Prologue to this last page — I want to say something simple.
+## What I Am Offering
 
-Thank you.
+BeehiveOfAI is free. The book is free. The code is free. That does not change.
 
-Not for buying the book — it is free. Not for using the platform — you may never use it. Thank you for your time. Thank you for reading the story of a person who had an idea and spent seven days turning it into something real. That is the most valuable thing anyone can give, and you gave it to me.
+But if you are a country, a company, an organization, or an individual who sees the potential in what I have built — and in the ideas I have described in this epilogue — I want to hear from you.
 
-I hope something in these pages was useful to you. I hope it sparked an idea, or clarified a concept, or gave you the push to try something you have been thinking about. And if it did none of those things — if you just read it because you were curious — that is more than enough.
+I am not a random developer who stumbled onto one good idea by accident. I am someone who generates useful, original, actionable ideas across many fields, consistently, and has been doing it for years. BeehiveOfAI is one of those ideas, turned into working software in seven days. The hierarchical hives, the NP-hard solvers, the distributed supercomputer concept — those are the next ones. And there are more beyond those.
 
-The code is free. The book is free. The idea is free.
+What I am offering is collaboration. You bring the resources, the scale, the market access. I bring the ideas, the vision, and the ability to build. Together, we build the next big thing. Not my next big thing — ours.
 
-Take it. Build on it. Make it yours.
+This is a win-win. I have the ideas. I have the track record. I have the ability to move fast — you saw how fast. What I need is a partner who sees the value and wants to move with me.
 
-And if one day, somewhere in the world, a beehive you built processes an AI task on a computer that would otherwise have been idle — if someone earns a little money from their machine, or an organization processes sensitive data without sending it to the cloud, or a student somewhere accesses AI tools they could not afford before — then all of this was worth it.
+---
 
-Every single late night. Every single bug. Every single moment of doubt.
+## Why
 
-Worth it.
+My girlfriend is asleep right now. Same time zone, different country. She does not fully understand what I build — she understands why I build it.
+
+Tokyo. Cherry blossoms in Ueno Park. Street food in Osaka. Temples in Kyoto.
+
+Paris. Standing in front of Monet's water lilies — the real ones, the actual paint on the actual walls of the Musée de l'Orangerie. She has been dreaming about those paintings for years.
+
+A Formula 1 race. The northern lights in Iceland.
+
+These are not business objectives. These are not KPIs. These are the dreams of two people who love each other and want to see the world together. Everything I build, I build for that.
+
+If you want to work with me — if you see the value in what I do and want to build something together — here is how to reach me:
+
+**Nir Strulovitz**
+**Phone:** +972-54-475-2626
+**Email:** nir.strulovitz@gmail.com
+**Books:** Search "Nir Strulovitz" on Library Genesis or Archive.org
+**Inventions:** https://www.weaponsinventor.com/
+**Code:** github.com/strulovitz
+
+I am here. I am building. And there is a lot more where all of this came from.
 
 ---
 
