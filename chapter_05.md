@@ -190,6 +190,38 @@ Is the public mode suitable for highly classified government documents or extrem
 
 ---
 
+## The Byzantine Generals Problem — When a Worker Disagrees, Is It Broken or Brilliant?
+
+There is a deeper challenge in the public mode that I want to discuss openly, because it is not yet solved in the current software — it is a planned future feature, and it touches on some of the most interesting questions in computer science and artificial intelligence.
+
+The problem is this: how does the queen bee automatically verify that a worker bee is giving honest, correct results?
+
+One classical approach comes from a famous problem in computer science called the Byzantine Generals Problem. Imagine several generals surrounding a city. They need to agree on whether to attack or retreat. But some of the generals might be traitors who send false messages to confuse the others. The question is: how can the loyal generals reach the correct decision despite the traitors?
+
+Applied to our system, the approach would work like this: the queen bee takes a small test task and sends the exact same task to three different worker bees. If two of them give the same answer and the third gives a different answer, the naive conclusion is simple — the third worker is defective or malicious. Kick it out. Trust the majority.
+
+But here is where it gets interesting — and where the naive approach fails.
+
+Imagine two workers are running an older AI model, and they both answer: "Paris is the capital of France." The third worker is running a newer, more capable model, and it answers: "Paris is the capital of France, but since the 2025 administrative reform, governmental functions are increasingly being decentralized to Lyon and Marseille."
+
+The naive Byzantine logic says: two agree, one disagrees — the third is bad. But in reality, the third worker is the BEST one. It has newer information. Excluding it would be a serious mistake.
+
+The real question is not WHETHER a worker disagrees, but WHY it disagrees. And there are at least three very different causes for the same observed effect:
+
+**Cause A:** The worker is broken or malicious. Its model is corrupted, or someone is deliberately feeding garbage results to sabotage the system. In this case, the worker should be excluded immediately.
+
+**Cause B:** The worker has a newer or more capable model. It sees nuances that the others miss. It has information the others do not have. In this case, this worker is the most valuable one in the hive, and excluding it would be exactly the wrong decision.
+
+**Cause C:** The worker interpreted the question differently. It is not wrong — it is approaching the problem from a different angle. This different perspective might actually be useful when the queen combines the final results.
+
+A dumb system sees the effect — disagreement — and punishes the outlier. A smart system asks: what is the CAUSE of the disagreement? And the answer changes everything.
+
+This is not implemented yet. But it is the next major feature I want to build. The current system relies on the queen bee's human operator to curate workers manually through the reputation system. The future system should be able to do this automatically — not just detecting that a worker disagrees, but understanding why, and making the right decision based on the cause.
+
+This problem sits at the intersection of distributed systems, fault tolerance, and — I believe — causal inference in artificial intelligence. It is one of the reasons I am reaching out to researchers in these fields. If you have thoughts on this, I would love to hear them.
+
+---
+
 ## The Website and the Software — How They Connect
 
 One thing I want to make very clear, because it can be confusing at first: there are two separate pieces to this project, and they work together.
