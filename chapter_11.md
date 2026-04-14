@@ -1,4 +1,4 @@
-# Chapter 11 — How the Hive Sees
+# Chapter 11 — How the Hive Hears and Sees: One Trick in Two Dimensions
 
 ---
 
@@ -8,11 +8,15 @@ When I sat down with my Claude tonight, the only thing on the agenda was a small
 
 I asked Claude to walk me through what such a test would look like. Not which model would run where. Not which port would talk to which other port. Just: *what photo, what question, what happens.* In words. So I could see in my head whether we were testing something real or testing something we were fooling ourselves about.
 
-What happened in the next forty minutes was the discovery of a principle that — if I am right — is as big as the original idea this whole book is about. It is the answer to a question I had been quietly avoiding for two years: how does a swarm of small, cheap, distributed AIs see the world? Not pretend to see it. Not hand-wave a description of seeing it. *See it.* The way an animal with eyes sees it.
+What happened in the next forty minutes was the discovery of a principle that — if I am right — is as big as the original idea this whole book is about. It is the answer to a question I had been quietly avoiding for two years: how does a swarm of small, cheap, distributed AIs perceive the world? Not pretend to perceive it. Not hand-wave a description of perceiving it. *Perceive it.* The way an animal with eyes and ears does.
 
 I did not know I was looking for this answer. We found it by accident, in the gap between a question I asked and an answer that turned out to be wrong.
 
-So instead of giving you the answer in a polished form — *here is the principle, here is why it works, here are the equations* — I am going to walk you through the discovery the way I actually walked through it, with my Claude, in real time. Because the polished form would hide the *why*. And the *why* is the only part that matters.
+The principle that came out of that conversation scales across **four dimensions** — sound is one dimension, an image is two, a 3D map of the world is three, and a 4D model of the world over time is four. In this chapter I am going to walk you through the first two: sound and sight. The next chapter will scale the same principle to all four, and that is where the discovery becomes really enormous, because the four-dimensional version is the answer to a question I have never been able to answer honestly until tonight: how a *swarm* of distributed perceivers can build up a complete model of a physical place and the things moving through it, without any single member of the swarm ever seeing the whole picture.
+
+But first, sound and sight. The trick that makes everything else possible.
+
+I am going to walk you through it the way I actually walked through it, with my Claude, in real time. Because the polished form would hide the *why*. And the *why* is the only part that matters.
 
 ---
 
@@ -156,15 +160,15 @@ Adding more levels to the hive just adds more zoom levels. The principle does no
 
 ---
 
-## The same trick, twice more
+## The same trick, in one dimension
 
 Here is where it stopped being a clever fix for a vision test and started being something a lot bigger.
 
-The principle is not really about *images*. The principle is about *sub-sampling the input*. You take a high-fidelity input — a photo, a recording, a video — and you make a coarse copy of it by mechanically throwing away most of the data. You give the coarse copy to the parent and the high-fidelity full version, sliced into pieces, to the children. The parent uses the coarse copy to keep a *map*; the children use their high-fidelity slices to find the *details*. The merge happens at the parent by placing the children's text reports onto the parent's coarse map.
+The principle is not really about *images*. The principle is about *sub-sampling the input*. You take a high-fidelity input and you make a coarse copy of it by mechanically throwing away most of the data. You give the coarse copy to the parent and the high-fidelity full version, sliced into pieces, to the children. The parent uses the coarse copy to keep a *map*; the children use their high-fidelity slices to find the *details*. The merge happens at the parent by placing the children's text reports onto the parent's coarse map.
 
-Once you state it that way, you can see immediately that the same trick works on *audio*. Here is how.
+Once you state it that way, you can see immediately that the same trick works on *sound*. Sound is a one-dimensional signal — a function of time and nothing else. A microphone records the air pressure in a room as a single number, forty-four thousand times a second, and the resulting sequence of numbers is the entire signal. There is no width and no height — just one axis, time, with one value at each moment. Where an image has *two* dimensions to sub-sample (width and height), sound has *one*. But the sub-sampling principle still works, exactly the same way, on the one axis it has.
 
-A high-fidelity audio recording is a sequence of samples — typically forty-four thousand samples per second of sound. Take every other sample and throw the rest away. Now you have a recording at twenty-two thousand samples per second — half the fidelity, half the file size, all the same total duration. The low-fidelity version still contains the *gestalt* of the sound: the rhythm, the speaker presence, the rough spectrum, the broad shape of the music or the conversation. You could not transcribe a whisper from it, but you can hear *that* there is a whisper, and *where* in the timeline the whisper happens. Just like the low-resolution image contains the gestalt of the scene without the small details.
+Take a high-fidelity audio recording — say, an hour of conversation in a restaurant, recorded at forty-four thousand samples per second. Take every other sample and throw the rest away. Now you have a recording at twenty-two thousand samples per second — half the fidelity, half the file size, all the same total duration. The low-fidelity version still contains the *gestalt* of the sound: the rhythm, the speaker presence, the rough spectrum, the broad shape of the music or the conversation. You could not transcribe a whisper from it, but you can hear *that* there is a whisper, and *where* in the timeline the whisper happens. Just like the low-resolution image contains the gestalt of the scene without the small details.
 
 Now take the original full-fidelity recording and cut it into one-second slices. Hand each slice to a worker. Each worker runs its tiny audio model on its one-second slice and produces a text description of what it heard: *"In this second I heard a male voice say 'hello.'"* *"In this second I heard a glass clink against a plate."* *"In this second I heard a child laugh."* The workers each only process one second of full-fidelity audio — genuinely smaller work — and produce text observations that sit on a timeline.
 
@@ -172,11 +176,9 @@ The parent at the top has a low-fidelity copy of the *whole* recording, runs her
 
 The merge: she takes her temporal map and decorates it with the workers' text reports. *"At second 12, I hear that something happens — and the worker who listened to second 12 reports it was a male voice saying 'hello.' So at second 12, a man said hello."* *"At second 17, my low-fidelity version makes me think a child reacted to something — and the worker who listened to second 17 reports a child laughing. So at second 17, the child laughed."*
 
-Same recursive structure. Same low-fidelity-at-parent, high-fidelity-slices-at-workers, text-reports-up, integration-at-each-level. The math is identical to the image case, just one-dimensional instead of two-dimensional. The biology is identical too — this is how the cocktail party effect works in human hearing. You can pick out one conversation from a noisy room because your brain is doing the same trick: a low-fidelity scan of the whole acoustic scene, plus high-fidelity attention on one source at a time, integrated into one coherent perception.
+Same recursive structure. Same low-fidelity-at-parent, high-fidelity-slices-at-workers, text-reports-up, integration-at-each-level. The math is identical to the image case, just on one axis instead of two. The biology is identical too — this is how the cocktail party effect works in human hearing. You can pick out one conversation from a noisy room because your brain is doing the same trick: a low-fidelity scan of the whole acoustic scene, plus high-fidelity attention on one source at a time, integrated into one coherent perception.
 
-And then video. Video is just images plus audio. A video at thirty frames per second is thirty photos per second, plus a continuous audio track. To hand a video down a hive, the parent takes every other frame (fifteen frames per second — half the temporal resolution) *and* every other pixel of those frames (half the spatial resolution) *and* every other sample of the audio, and that becomes her low-fidelity copy of the whole video. She watches the gestalt — *who is in the video, what is the camera doing, what is the broad rhythm of the scene, what is the music doing, who is talking when*. Then she splits the high-fidelity version both *spatially* (cut each frame into tiles) *and* *temporally* (cut the timeline into one-second windows), and she dispatches the resulting little high-fidelity blocks to her children. Each child gets one tile of one second of the video — a small, fully high-fidelity slice.
-
-The hive becomes three-dimensional. Spatial parallelism for what is in each frame, temporal parallelism for which moment in time, and integration at each level using the parent's coarse view of *its region of space and time*. You can analyze an hour of video on a swarm of small cheap models running on consumer hardware, and the architecture is the same as the architecture for analyzing a single photo or a single audio clip. **One principle, three modalities, the same recursive shape.**
+So we now have the principle in **one** dimension (sound) and **two** dimensions (image). The next chapter scales it to three and four, and that is where the story gets really interesting — because three dimensions is the actual physical world the hive is moving through, and four dimensions is the physical world *changing over time*. But before we get there, I want to take one paragraph to talk about why any of this matters to you, the reader, who may not care at all about how a hive of small AIs reasons about pixels.
 
 ---
 
@@ -184,41 +186,20 @@ The hive becomes three-dimensional. Spatial parallelism for what is in each fram
 
 Skip this section if you are technical and want to keep going. If you are not technical, this section is for you.
 
-What we just described is the answer to a question that has been quietly hovering over distributed AI for a long time: *can you do perception — real seeing, real hearing, real understanding of the world — on a swarm of cheap small computers, instead of on one giant expensive computer in someone else's data center?*
+What we just described is the answer to a question that has been quietly hovering over distributed AI for a long time: *can you do real perception — real seeing, real hearing — on a swarm of cheap small computers, instead of on one giant expensive computer in someone else's data center?*
 
 Until tonight, the honest answer was *we are not sure*. There were techniques for doing it on one big machine, and there were techniques for distributing parts of one big model across several machines if you had expensive networking between them, but there was no good answer for *one tiny model per cheap machine, many cheap machines, no special networking*. The kind of setup an ordinary person could build in their living room. The kind of setup a hospital could build in its building. The kind of setup a small country could build for itself.
 
-Now there is an answer. Cut the input mechanically. Send pieces to many small machines. Each small machine looks at its piece. Send text observations back. Combine them at each layer of the tree using a coarse view of that layer's region. It does not require expensive hardware. It does not require fast networking between the machines. It does not require any single machine to be smart. It works because *the architecture itself does the integration*, and because vision is doing the easy job (where things are) while text is doing the easy job (what they are), and the hard job (combining them) is done by simply placing one onto the other.
+Now there is an answer. Cut the input mechanically along whatever axes it has. Send pieces to many small machines. Each small machine looks at its piece. Send text observations back. Combine them at each layer of the tree using a coarse view of that layer's region. It does not require expensive hardware. It does not require fast networking between the machines. It does not require any single machine to be smart. It works because *the architecture itself does the integration*, and because perception is doing the easy job (what is roughly here) while text is doing the easy job (what the details are), and the hard job (combining them) is done by simply placing one onto the other.
 
-Concretely, this means:
+Concretely, in just the two dimensions covered in this chapter — sound and image — this means:
 
-- **A hospital** can run video analysis on its security cameras, audio analysis on its intercoms, and image analysis on its medical scans, all on the office computers it already owns, without sending a single byte to an outside service.
-- **A small business** can analyze every photo a customer uploads, every voice message a customer leaves, every video a customer sends, on machines costing a few hundred dollars each, instead of paying per-image fees to a cloud service.
+- **A hospital** can run image analysis on its medical scans and audio analysis on its dictation recordings and intercom conversations, all on the office computers it already owns, without sending a single byte to an outside service.
+- **A small business** can analyze every photo a customer uploads and every voice message a customer leaves on machines costing a few hundred dollars each, instead of paying per-image and per-minute fees to a cloud service.
 - **A country with no large AI industry** can build a sovereign perception system out of consumer laptops, give it to its hospitals and police forces and schools, and not depend on any foreign company to keep it running.
-- **A person on a research expedition** with a satellite uplink that can only send small text messages can still get full understanding of photos and recordings taken in the field, because the analysis happens on the local hive in the camp, not on a remote server.
-- **An autonomous device** — a drone, a delivery robot, a home assistant, a security camera — can have *real* understanding of what it is looking at and listening to, by being part of a hive of devices that share work the way the hive in this chapter does, instead of relying on a constant network connection to a central server.
+- **A research lab on a slow internet connection** can analyze high-resolution photos and recordings locally on whatever hardware it has, instead of waiting hours to upload each one.
 
-That last one is the one that I want you to remember, because I think it is going to matter the most. Right now, every "smart" device in your home or your city is smart only because it sends what it sees to a server somewhere else, and the server thinks for it. Cut the connection, the device goes blind. With this architecture, the devices think *together*, *locally*, *without anyone watching*. They can actually see and hear without phoning home. And when they need to make a decision, they make it among themselves, by the same divide-and-conquer trick we just walked through.
-
-That is not a small change. That is the difference between machines that depend on a master and machines that do not.
-
----
-
-## What this means for swarms
-
-I have spent most of this book talking about hives of computers — virtual machines on a desk, server racks in a basement, gaming PCs in apartments around the world, networked together to run AI tasks for hire or for free. I want to close this chapter by talking about a different kind of hive.
-
-Imagine a swarm of small autonomous flying machines. Drones, the size of a coffee cup, each one carrying a tiny camera, a tiny microphone, a tiny computer, and a tiny radio. Imagine five hundred of them, released from a transport aircraft, descending toward an objective. Until tonight, when I tried to explain how such a swarm could *see* the world it was descending into, I had to wave my hands. *"They have small brains that whisper to each other in a few words at a time and make decisions at lightning speed."* It sounded poetic, but if you pushed me on the technical details I had nothing concrete to say. I knew it was *possible* — biology had proved it possible, since real swarms of bees and starlings and fish do exactly this — but I could not draw the architecture on a napkin.
-
-Now I can. Each drone runs a tiny vision model and a tiny audio model and a tiny text-integration model. The drones organize themselves into a tree — some drones serve as Queens, some as DwarfQueens, some as Workers — and the same recursive principle from this chapter operates physically in three-dimensional space. The Queen drones at the top of the tree hold low-resolution views of the *whole battle space*: the broad layout of the building or the terrain, the rough position of every other drone, the broad acoustic scene of the area. The Worker drones at the bottom of the tree zoom in on specific regions, specific corridors, specific objects, specific sounds, and report what they find back up the tree as short text observations. The Queens decorate their gestalt maps with the Workers' detailed text reports. The whole swarm's situational awareness is the recursive sum of every drone's local observation, integrated by the same sub-sampling principle we just walked through.
-
-No single drone sees the whole battle space. No single drone needs to. *The swarm sees the whole battle space.*
-
-This is also why such a swarm is so hard to disable. If you destroy a Queen drone, another drone — any other drone — can become a Queen, because every drone is a complete model with the same software. The hierarchy regenerates around whichever drones are still flying. There is no head to cut off, because *any drone can be the head*. The architecture itself is the redundancy.
-
-I am not telling you this to glorify a weapon. I am telling you because I think it is important that you understand how the world is going to look in five years, whether anyone in our governments is paying attention or not. The technology we just walked through in this chapter is the technology that makes drone swarms with real perception possible, on cheap hardware, without a central server, distributed across hundreds of small devices that each do a tiny piece of the work. *Somebody* is going to build this. The question is whether you and I get to understand it before it shows up in the news, or after.
-
-I would rather you understand it now.
+That is just the first two dimensions. The third and fourth — which the next chapter covers — are even bigger, because they are the dimensions of the physical world itself, and they unlock the possibility of swarms of distributed perceivers that can map a place, navigate it, and track what moves through it, all without phoning home to any central server.
 
 ---
 
@@ -226,7 +207,7 @@ I would rather you understand it now.
 
 I want to close this chapter by saying something honest about how this discovery happened, because I think the *how* is part of what I am trying to teach in this book.
 
-I did not set out to discover a unifying principle for distributed perception. I set out to plan a small test for a small project. I asked a clear question and got a clear answer, and then I noticed the answer was wrong in two specific ways, and instead of patching the answer I sat with the wrongness for one more minute than I would normally have. In that minute, the right answer arrived — first as a fix for one of the two errors (cut the photo into pieces), then as a refinement on the fix (cut it twice with an offset to handle boundaries), then as a deeper insight about who needs to see what at which resolution (give the boss a low-resolution view), then as a recursive structure that scales to any depth, then as a generalization across vision and audio and video, then as the answer to a question I had been hand-waving for years about how a drone swarm could really see.
+I did not set out to discover a unifying principle for distributed perception. I set out to plan a small test for a small project. I asked a clear question and got a clear answer, and then I noticed the answer was wrong in two specific ways, and instead of patching the answer I sat with the wrongness for one more minute than I would normally have. In that minute, the right answer arrived — first as a fix for one of the two errors (cut the photo into pieces), then as a refinement on the fix (cut it twice with an offset to handle boundaries), then as a deeper insight about who needs to see what at which resolution (give the boss a low-resolution view), then as a recursive structure that scales to any depth, then as a generalization across sound and image, and (in the next chapter) as an answer to questions about three- and four-dimensional perception that I have been hand-waving for years.
 
 None of these steps was hard, individually. Any of them, on their own, is a thirty-second observation. The whole chain took maybe forty minutes. Forty minutes from "I am about to approve a broken design" to "I think I just found something as big as the original idea this whole book is about."
 
@@ -237,5 +218,7 @@ The lesson, if there is one, is this. Most of the things you build will be sligh
 The chapter you just read is the result of one evening of refusing to look away. The Queen at the top of the hive *does not see the photo herself* until she has a low-resolution copy in her own little eyes — but the principle of how she sees it was waiting for one of us to refuse to accept the broken design. The same principle had probably been waiting for years, in plain sight, in every textbook on image pyramids and every research paper on hierarchical attention. It just took someone willing to ask, in plain words, *what would it mean if you did this with cheap small models on cheap small machines, instead of with one giant model on one giant machine.*
 
 That is the question this whole book is about. And the answer just got bigger.
+
+In the next chapter, we add a third dimension and then a fourth, and we go from a hive that can hear and see to a hive that can map a physical place and watch the things moving through it.
 
 ---
