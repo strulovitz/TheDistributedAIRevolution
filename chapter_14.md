@@ -170,7 +170,7 @@ That equivalence is the one I want you to walk away with. The boundary between *
 
 I want to end this chapter by noting something I noticed only after the chapter was nearly done.
 
-In Chapter 11, the principle was *the information is a property of space*, and distributed single-value sensors are where it lands the hardest.
+In Chapter 11, the principle was *the information is a property of communication, not a property of computation*, and distributed single-value sensors are where the argument lands the hardest.
 
 In Chapter 12, the principle was *sub-sample the input mechanically and recursively*. That was the move for sound and image.
 
