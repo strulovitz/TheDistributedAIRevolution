@@ -18,8 +18,6 @@ The entire platform described in this book is **free and open source**. The code
 
 ## Table of Contents
 
-### Part I — The Distributed AI Revolution (the marketplace, the platform, the vision)
-
 | # | Chapter | Description |
 |---|---------|-------------|
 | | [Prologue — A Dream Worth Coding For](prologue.md) | The personal story behind the project, the breakthrough invention of task parallelism, and why it is all free |
@@ -33,19 +31,12 @@ The entire platform described in this book is **free and open source**. The code
 | 8 | [The Proof: We Actually Did It](chapter_08.md) | Real distributed tests on real machines — Windows, Linux, the real internet in 29 seconds, and the Windows Firewall villain |
 | 9 | [Vibe Coding: How One Person Built All of This](chapter_09.md) | How one developer built the entire platform in 7 days using AI-assisted coding — day by day, commit by commit |
 | 10 | [The Future: A World of Beehives](chapter_10.md) | Where this goes next — thousands of independent hives, private mode for organizations, and the energy question |
-| | [Epilogue — Tokyo, Paris, and the Open Road](epilogue.md) | Hierarchical hives, NP-hard problem solving, the author's vision and published works, and a call to collaboration |
-
-### Part II — The Perception Arc (how the hive senses the world)
-
-*Five chapters added in 2026 after the original book, covering how a distributed swarm of cheap machines can perceive the real world through sound, image, space, time, and every other kind of sensor, by a single recursive principle that scales across dimensions. Read them in order — each one adds one more capability to the hive.*
-
-| # | Chapter | Description |
-|---|---------|-------------|
 | 11 | [How the Hive Senses the Simplest Things: Why One Number Becomes a Field](chapter_11.md) | Single-value sensors — temperature, gas, light, humidity, IR. Why distributed beats centralized for the simplest case. The Pi-plus-Arduino cortex-and-spine drone architecture. The Telephone-game / Faraday-bunker cloud argument. "The information is a property of communication, not a property of computation." |
 | 12 | [How the Hive Hears and Sees: One Trick in Two Dimensions](chapter_12.md) | Sound and image. The sub-sampling principle. The quadrant + offset-grid cut for image analysis. Why the boss gets a low-resolution view of the whole thing while children get high-resolution slices. Integration by placing child reports onto the boss's gestalt. |
 | 13 | [How the Hive Maps the World: The Same Trick in Four Dimensions](chapter_13.md) | 3D and 4D mapping. A swarm of drones reconstructing the inside of a bunker, in three dimensions, plus time to track people moving through it. How the same principle scales from one photograph to an entire building changing over time. |
 | 14 | [How the Hive Grasps Reality: Many Nets Over One World](chapter_14.md) | The vector mesh. RAG over physical reality. Why one unified mega-vector is wrong and many specialized meshes linked at anchor points of meaning are right. Wittgenstein's nets. The binding problem. Biology-inspired next steps: stigmergy, place cells, lateral inhibition. |
 | 15 | [The Octopus Is Slippery](chapter_15.md) | FAQ chapter. Five (or six) slippery concept-confusions that tripped up the author and Claude the morning after writing the previous chapters. What you can test on a desk, and what you cannot. Scope discipline for people trying to implement the architecture on a VM hive. |
+| | [Epilogue — Tokyo, Paris, and the Open Road](epilogue.md) | Hierarchical hives, NP-hard problem solving, the author's vision and published works, and a call to collaboration |
 
 ---
 
