@@ -1,4 +1,4 @@
-# Chapter 13 — How the Hive Remembers: Many Nets Over One World
+# Chapter 13 — How the Hive Grasps Reality: Many Nets Over One World
 
 ---
 
