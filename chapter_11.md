@@ -180,6 +180,52 @@ Everything so far in this chapter has been theory and biology. Let me make it co
 
 ---
 
+## But we have AI — what does the brain add to the nose?
+
+Everything I have described so far — following a thermal gradient to find a submarine, tracing a CO2 trail to find a trapped person, mapping pollution to its source — is arithmetic. Sorting. Binary search. Find the hot spot, move toward it, repeat. A few lines of code on a cheap computer. No artificial intelligence needed at all.
+
+So why does the hive carry AI on every drone?
+
+Because the real world fights back.
+
+**The real world has decoys.** Consider the submarine again. A submarine commander who suspects he is being tracked does not sit still and wait. He deploys countermeasures — thermal decoys, small missile-like devices with their own propulsion, designed specifically to produce a heat signature that mimics the submarine's wake. Modern decoys are not dumb flares that follow a ballistic arc and burn out. They are small guided missiles that maneuver, change course, and emit realistic signatures across multiple channels. Their entire purpose is to make a detection system chase the wrong target.
+
+Simple gradient-following cannot tell the difference. A sorting algorithm sees two heat sources and says "two hot spots, both interesting." It cannot tell you which one is a five-thousand-ton submarine and which one is a twenty-kilogram decoy missile pretending to be one.
+
+The AI can. But not by staring at the raw sensor numbers — the AI is not good at computing curvature from coordinate sequences, and anyone who tells you otherwise is not being honest. What the AI needs is **scaffolding**: a small layer of code that takes the raw position history of each target and computes features from it. Speed profile — is it accelerating, decelerating, or constant? Curvature — is it turning, and how tightly? Acceleration — is the movement consistent with powered maneuvering, or is it coasting on momentum? Turning radius — is this thing moving like something that weighs five thousand tons, or like something that weighs twenty kilograms?
+
+These features are computed by simple physics and calculus — derivatives, curve fitting, the kind of math any engineering student learns in the second year. A few dozen lines of code. The scaffolding takes care of it.
+
+Then the AI gets text: *"Object A: fifteen knots, accelerating, gentle sustained turn, powered maneuvering — changes direction against momentum. Object B: twelve knots, decelerating, trajectory consistent with a lighter body, pulling turns too tight for anything weighing more than a few hundred kilograms."*
+
+And now the AI reasons: Object B is too agile for a submarine. Its thrust-to-weight ratio is wrong. It moves like a small missile, not like a large vessel. Decoy. Object A moves like something heavy, under power, making deliberate course changes. Real.
+
+**But the enemy is also smart.** A sophisticated adversary does not deploy one decoy. He deploys five, and he programs them to mimic submarine-weight dynamics as closely as a small missile can. He knows you will check for physical constraint mismatch, so he deliberately limits the decoys' agility to stay within plausible bounds. One layer of reasoning is not enough.
+
+This is where the hive's architecture gives an advantage that no single-sensor system can match: **multi-modal consensus.**
+
+A thermal decoy emits heat. It may even emit the right amount of heat, in the right pattern, at the right rate of change. But does it also produce the right acoustic signature? A real submarine's propulsion makes characteristic sounds — cavitation, engine harmonics, flow noise over the hull. Does the decoy also produce diesel exhaust? A real submarine on snorkel operations leaves a chemical trace in the water. Does the decoy also displace water like a five-thousand-ton object moving at fifteen knots? Water displacement creates a pressure wave and a surface wake pattern that are functions of mass, speed, and hull shape.
+
+The hive has drones carrying different sensors — thermal, acoustic, chemical, pressure — approaching from different angles simultaneously. The queen collects all their reports and asks: do they all agree?
+
+If thermal says "submarine" but acoustic says silence, that is suspicious. A real submarine is hot AND noisy. If thermal says "submarine" and acoustic says "submarine" but chemical says no exhaust, that is suspicious. If all four modalities converge — heat, noise, exhaust, water displacement — the probability of a real target goes up sharply, because faking all four signatures simultaneously is engineering work that costs almost as much as building a real submarine.
+
+The queen's AI does not need to be certain. It needs to be *probabilistic*. It reports: *"Five targets detected. Targets B, C, and D show thermal signatures but are acoustically silent and show no chemical trace — likely decoys. Target A shows consistent signatures across all four modalities and contextually intelligent evasion behavior — highest probability real. Target E is ambiguous — I recommend deploying more sensors toward E before committing."*
+
+That last judgment — *"ambiguous, recommend deploying more sensors before committing"* — is something only a reasoning system can produce. A sorting algorithm gives you a ranked list. The AI gives you a qualified assessment with an action recommendation and an honest admission of what it does not yet know.
+
+**One more thing the AI adds that the scaffolding cannot: turning points into vectors.** The scaffolding computes where each target is NOW. But the queen's AI, receiving trajectory features described in text over multiple sweeps, can reason about behavior over time. *"This target was heading north. It detected our drones approaching. It turned east and increased speed. That is evasive behavior — it knows we are here."* Or: *"This target changed course immediately after we moved sensors toward it — but its course change brought it closer to the continental shelf, which is where a submarine would dive to hide in the thermocline. That is a tactically intelligent response, not a pre-programmed decoy pattern."* The scaffolding computes the trajectory. The AI interprets what the trajectory *means*.
+
+The architecture, then, has two clean layers, and each layer does what it is good at:
+
+**Layer one is scaffolding** — simple code, a few dozen lines of Python, running on the cheap computer inside each drone. It reads the sensors. It computes the gradient. It extracts trajectory features from position history. It handles all the math that AI models are bad at — derivatives, curve fitting, coordinate transforms, physical constraint estimation. This layer is fast, cheap, deterministic, and runs on hardware that costs less than dinner.
+
+**Layer two is reasoning** — the AI model, running on the queen's slightly larger brain. It receives text descriptions of what the scaffolding computed, and it thinks. Which targets are real? Which are decoys? What is this target's intent? Where is it going? Should we commit or should we wait and gather more data? This layer handles everything that code is bad at — judgment, multi-modal correlation, adversarial thinking, honest uncertainty, action recommendations. It is not fast, it is not deterministic, and it does not need to be. It needs to be *right more often than wrong*, and it needs to know when it does not know.
+
+Neither layer pretends to do the other's job. The scaffolding does not try to reason. The AI does not try to do calculus. Each one makes the other useful. Together, on hardware that fits inside a drone and costs what a restaurant meal costs, they produce a capability that no single expensive sensor platform in any military on Earth can currently match — not because the individual components are better, but because there are fifty of them, with five sensor types, approaching from fifty angles, and the decoy has to fool all of them, in all modalities, from all angles, all at once.
+
+---
+
 ## Closing — the simplest case already tells you the whole story
 
 I wrote this chapter first in the perception arc because the simplest sensor is where the difference between the hive and the cloud is cleanest. No model-size arguments. No compression arguments. No "but a bigger GPU would solve it." Just: *the information is in the space, and the hive is in the space, and the cloud is not*. That is the whole chapter compressed into eighteen words.
