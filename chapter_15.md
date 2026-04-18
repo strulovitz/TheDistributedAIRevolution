@@ -98,6 +98,20 @@ This one only applies to the implementation, not the architecture, but I want to
 
 ---
 
+## Slippery point 6 — the sound gestalt is not an image gestalt
+
+Added late, after the first real end-to-end test on a three-minute audio clip caught a flaw in Chapter 12's sound section that nobody caught during writing.
+
+**The confusion.** Chapter 12 describes the parent's gestalt on long audio by direct analogy to image downsampling: halve the sample rate of the whole recording, give the resulting low-fidelity copy to the parent's tiny audio model, and the parent hears the gestalt. It looks like the correct one-dimensional mirror of the two-dimensional image case. It is not.
+
+**The right answer, and who got it right.** Image downsampling compresses the image enough for the model's fixed input window to hold the whole scene at coarser resolution. Audio sample-rate reduction does not compress duration; an hour of recording is still an hour after you halve the sample rate, and no local audio model today can hold an hour in a single forward pass. The correct one-dimensional analogue is **time compression** — varispeed, or pitch-preserving time-scale modification (Netflix's 1.5× playback; algorithmically WSOLA) — which compresses duration until the whole recording fits inside the model's receptive field. Nir caught the flaw during the first real test; Nir proposed the fix (fast-forward the audio, the way old movies sound when you press fast-forward on the remote). The full correction lives at the end of Chapter 12. I am putting a pointer here because the slippery-points chapter is where someone trying to build this will look first.
+
+**Why this is so easy to get wrong.** Because the image case is so clean that the prose wants to write itself in parallel for every subsequent axis. Sample rate *feels* like it should be the audio equivalent of pixel resolution, and the parallel sentence structure is comfortable to write. The comfort is the trap; the writer and the co-writer both coast on the analogy without stopping to ask whether halving sample rate does to a one-dimensional audio signal what halving both pixel axes does to a two-dimensional image. It does not. The axis you need to compress for the parent's gestalt to fit the model is *time*, and sample-rate reduction does not touch time.
+
+**The biological parallel that makes it click.** Human peripheral audio perception does not work by hearing a blurred full-fidelity copy of the whole hour. It works by holding a short window of recent sound in echoic memory (a few seconds at most) and continuously stitching the present to the immediate past. When you say you "remember the whole symphony," you are reconstructing it from a sparse set of attentional snapshots plus the stored gist, not from a continuous low-fidelity recording of the hour. The audio gestalt was always compression-in-time, not downsample-per-moment. We just wrote it the wrong way the first time.
+
+---
+
 ## Why should YOU care?
 
 Skip this section if you are technical and want to keep going. If you are not technical, this section is for you.
