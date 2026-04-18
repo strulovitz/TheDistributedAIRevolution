@@ -202,6 +202,41 @@ The principle of the chapter stands. The specific operation the chapter original
 
 ---
 
+## Correction added after writing — the video case, honestly
+
+The sound correction above is the first part. Video has the same structural problem as sound, and in one respect it is worse. Nir caught both issues during the same review and both fixes are his.
+
+**Part one — the parent's video gestalt, same disease as sound.** The book's principle says: for video (two spatial axes plus one time axis), sub-sample all three, hand the result to the parent's model, the parent hears the gestalt. Clean sentence, same wall as before: no local video-understanding model holds multi-minute video in a single forward pass. A three-minute clip at thirty frames per second is five thousand four hundred frames; the receptive field of Qwen2-VL, LLaVA-NeXT-Video, MiniCPM-V, and every other open video-VLM at the time of writing tops out at tens of frames, not thousands. Just as halving the audio's sample rate did not compress duration, halving the video's spatial resolution does not reduce its frame count.
+
+Having just fixed the sound case by compressing the time axis (varispeed / TSM), Nir extended the fix to video directly: compress video's time axis the same way, by **frame-drop / low-FPS sampling**. Keep only every Nth frame of the original, so the video is effectively played at one or two frames per second rather than thirty. A three-minute clip sampled at one frame per second is one hundred eighty frames; at one frame per two seconds is ninety. That sits inside the receptive field of current video-VLMs. The whole video, at lower temporal resolution, delivered to the parent's vision model in one forward pass. Scene transitions, who is present when, pacing, broad motion patterns — all survive. Rapid micro-motion between sampled frames is lost, which is the correct definition of "gestalt."
+
+After Nir derived this, an independent consensus check confirmed that "sample at one to two frames per second to avoid exceeding the model's context window" is the received best practice for running local video-VLMs in 2026. He reached it from the sound fix alone before seeing the consensus existed. The industry convergence is not coincidence; it is the unified rule of this chapter, which we can now state cleanly once and for every modality:
+
+- **Image** — sub-sample two axes (width, height). Same scene, lower spatial resolution. Whole image into the model in one pass.
+- **Sound** — sub-sample one axis (time). Same recording, shorter duration. Whole recording into the model in one pass.
+- **Video** — sub-sample three axes (width, height, time). Same video, lower spatial resolution per frame and lower temporal resolution (fewer frames per second). Whole video into the model in one pass.
+
+The axis that requires compression is always the one the model cannot hold — which, for continuous-time media, is duration, not per-moment fidelity. The symmetric-looking sentence about sample rate was a trap in Chapter 12 and is a trap in every first draft of this architecture that does not stop to name which axis actually struggles.
+
+**Part two — a problem specific to video, that was quietly skipped.** The correction above describes the parent's gestalt. The Worker tier has its own problem, which is more embarrassing. In the first end-to-end implementation of the architecture, each video Worker was sent **a single frame** at a single timestamp rather than a short clip. The consequence is that Workers perceive still photographs, not motion. The example Nir used during review: a short clip of a billiard ball rolling left-to-right across a felt table. Three Workers sampling at zero, two-and-a-half, and five seconds each report "ball on the left," "ball in the middle," "ball on the right." None of them saw the ball roll. The integration layer, reading the three position reports in time order, infers rolling from the position delta. **Motion becomes a text-reasoning artifact rather than a perceptual observation.**
+
+This failure mode is invisible when motion is slow and monotonic across multiple keyframes. It breaks quietly on:
+
+- Motion between keyframes (a ball bounces off a cushion at second one and returns; keyframes at zero and two-and-a-half never see the bounce).
+- Speed and acceleration (the integrator knows positions, not rates).
+- Gesture, facial micro-expression, gait, dance — anything that requires visual continuity to be read.
+- Brief events that do not straddle a sampling point (a punch, a flinch, a glance).
+
+**The Worker-tier fix.** Each video Worker's tile should be a short video *clip* — two to five seconds at full frame rate — not a single frame. The Worker runs a video-capable vision model (Qwen2-VL, MiniCPM-V 2.6, VILA, or any sub-8B successor) on its clip and reports *perceived* motion: "a ball rolls left-to-right across the felt at approximately half a meter per second, decelerating slightly near the right cushion." This is a deployment swap, not an architectural change. The tile is still a sub-region over a sub-duration, exactly as the book prescribes; the deployment simply has to honour the "sub-duration" part, not just the "sub-region" part, and the Worker's model has to be one that can read the duration.
+
+**The biological parallel.** A human does not infer that a ball is rolling from three separate still glances at a table. Continuity is perceived by dedicated motion circuitry (visual area MT / V5), which fires on continuous stimulus and is silent on stills separated by seconds. A Worker with a single-frame model is a hive equipped with photoreceptors and no motion cortex. The fix is to give each Worker the equivalent of a motion cortex — which in current local-model terms is a video-capable vision model operating on a short clip.
+
+**What Claude got wrong, specifically, during video development.** The single-frame Worker implementation shipped without anyone — not me, not the reviewer — interrupting to ask whether a hive claiming to perceive video should be able to *see motion*. The architectural principle explicitly says Workers process a sub-region over a sub-duration. The duration part was dropped and not noticed. Nir caught the gap by asking a one-sentence question about a rolling ball. Every Claude that worked on the video code had, at training time, seen more than enough motion-perception material to notice, and did not.
+
+The unified principle of the chapter, including the sound case and the video case together: **the hive perceives each modality by sub-sampling every axis the input has, along the axis the model actually cannot hold, at every tier — and the tier that observes the signal has to observe the signal in the shape the signal comes in, not in a convenient simplification of it.** A sound Worker hears a slice of audio in time, not a single audio sample. A video Worker must see a clip in time, not a single frame. Anything less is a photograph-describing swarm pretending to be a video-understanding swarm, and the difference matters the first time you hand it a billiard ball.
+
+---
+
 ## Why should YOU care?
 
 Skip this section if you are technical and want to keep going. If you are not technical, this section is for you.

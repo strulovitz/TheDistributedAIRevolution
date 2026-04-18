@@ -112,6 +112,22 @@ Added late, after the first real end-to-end test on a three-minute audio clip ca
 
 ---
 
+## Slippery point 7 — the video case has two parts, both of which Claude missed and Nir caught
+
+The sound correction (slippery point 6) is only one half of what Chapter 12 got wrong. The video case has the same receptive-field problem *and* a second, more embarrassing problem specific to it. Both fixes are Nir's. Full treatment is in the correction section at the end of Chapter 12; this slippery point is where someone reading the FAQ first will find the pointer.
+
+**First half — parent's video gestalt, same disease as sound.** No local video-VLM at the time of writing holds multi-minute video in one forward pass. A three-minute clip at thirty frames per second is 5,400 frames; Qwen2-VL, MiniCPM-V, LLaVA-NeXT-Video and their peers accept tens of frames, not thousands. Halving spatial resolution does not reduce frame count, just as halving audio sample rate did not reduce duration. The fix: **frame-drop / low-FPS sampling**. Keep every Nth frame of the original so the video is effectively played at one or two frames per second rather than thirty. A three-minute clip becomes 180 frames at 1 FPS, 90 frames at 0.5 FPS — inside the receptive field. Nir derived this by extending his sound fix to video; independent consensus check confirmed "sample at one to two frames per second" is the received best practice for local video-VLMs in 2026. He arrived at the industry's answer from the sound reasoning alone, before seeing the consensus existed.
+
+**Second half — Workers perceive still frames, not motion.** In the first video implementation, each Worker was handed a single frame at a single timestamp, ran a single-image vision model on it, and reported what was in the photograph. For a clip of a billiard ball rolling left-to-right, three Workers report "left," "middle," "right." None of them saw the ball roll. The integration layer read the position deltas and produced prose that *sounds* like motion perception. It isn't. The failure is invisible on slow monotonic change and breaks on anything between keyframes — a bounce, a gesture, a facial micro-expression, a punch, a flinch. The fix: each Worker's tile must be a short video *clip* (two to five seconds at full frame rate), not a single frame, and the Worker tier must run a video-capable model (Qwen2-VL / MiniCPM-V / VILA).
+
+**Why this is so easy to get wrong.** Because "Worker processes a tile" parses as "Worker looks at one thing" by default. Because the text-integration prose, written over a list of *position at time*, reads fluently as if it described motion — and the writer and the reader both coast past the fact that nothing in the hive actually perceived the motion. And because single-image vision models were available before video-capable ones and the pipeline naturally calcified around the model it had.
+
+**The biological parallel.** Motion perception in the human visual cortex is handled by dedicated circuitry (area MT, V5) that fires only on continuous stimulus, not on stills separated by seconds. A video hive whose Workers see single frames is a hive with photoreceptors and no motion cortex — it will *sound* like it understood a rolling ball, because the integrator can produce that sentence from position samples, but no eye in the hive ever saw the rolling. The fix is to wire motion cortex at the Worker tier: clips, not frames.
+
+**The unified rule, restated one more time because it is easy to forget.** The hive perceives each modality by sub-sampling every axis the input has, along the axis the model cannot hold, **at every tier**. The tier that observes the signal has to observe it in the shape the signal comes in, not in a convenient still simplification. Sound Workers hear slices of audio across time. Video Workers have to see clips of video across time. Anything less is a photograph-describing swarm pretending to be a video-understanding swarm, and the difference matters the moment you hand it a billiard ball.
+
+---
+
 ## Why should YOU care?
 
 Skip this section if you are technical and want to keep going. If you are not technical, this section is for you.
